@@ -500,6 +500,16 @@ public class UpdatesActivity extends UpdatesListActivity implements UpdateImport
         headerBuildDate.setText(getString(R.string.current_build_date, StringGenerator.getDateLocalizedUTC(this,
                 DateFormat.LONG, BuildInfoUtils.getBuildDateTimestamp())));
 
+        TextView MaintainerName = findViewById(R.id.maintainer_name);
+        String maintainer = Utils.getMaintainer();
+        if (maintainer == null || maintainer.isEmpty()) {
+            MaintainerName.setVisibility(View.GONE);
+        } else {
+            MaintainerName.setText(
+                    getString(R.string.maintainer_name, maintainer));
+            MaintainerName.setVisibility(View.VISIBLE);
+        }
+
     }
 
     private void handleDownloadStatusChange(String downloadId) {

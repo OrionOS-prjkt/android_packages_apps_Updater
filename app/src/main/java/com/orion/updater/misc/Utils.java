@@ -58,6 +58,7 @@ import java.util.zip.ZipFile;
 public class Utils {
 
     private static final String TAG = "Utils";
+    private static String mMaintainer;
 
     private Utils() {
     }
@@ -91,6 +92,7 @@ public class Utils {
         update.setFileSize(object.getLong("size"));
         update.setDownloadUrl(object.getString("download"));
         update.setVersion(object.getString("version"));
+        mMaintainer = object.getString("maintainer");
         return update;
     }
 
@@ -401,5 +403,8 @@ public class Utils {
         // crDroid 20 and up should only be integer values (we don't have minor versions anymore)
         return (floatVersion >= 20) ? String.valueOf((int)floatVersion) : version;
     }
-
+    
+    public static String getMaintainer() {
+        return mMaintainer;
+    }
 }
